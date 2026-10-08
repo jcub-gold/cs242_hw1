@@ -1,0 +1,16 @@
+# You can write one-line comments in Python style.
+
+# Definition block comes first.
+def succ = S (S (K S) K);
+def _0  = S K;
+def _1  = succ _0;
+
+# Expression block comes next.
+_0 f x;
+_1 f x;
+(succ _1) f x;
+
+# Expected output is as follows:
+# x
+# (f x)
+# (f (f x))

@@ -1,0 +1,93 @@
+###############
+# DEFINITIONS #
+###############
+
+# Bool
+# - tt x y -->* x.
+# - ff x y -->* y.
+def tt  = K;
+def ff  = S K;
+
+# Pair
+# - pair x y z -->* z x y
+def c1 = S (K S) K;
+def c2 = S ((c1 S (c1 K (c1 S (S (c1 c1 I) (K I)))))) (K (c1 K I));
+def pair = c2 (c1 c1 (c1 c2 (c1 (c2 I) I))) I;
+def first = tt;
+def second = ff;
+
+# Numeral
+# - (succ n) f x -->* f (n f x).
+# - _0 f x -->* x.
+# - _n f x -->* f (f (...(f x)...)).
+def succ = S (S (K S) K);
+def _0  = S K;
+def _1  = succ _0;
+def _2  = succ _1;
+def _3  = succ _2;
+
+##########
+# PART 2 #
+##########
+# TASK: Implement the following functions.
+
+# BEGIN_YOUR_CODE
+def or     = I;
+def and    = I;
+def not    = I;
+def is_odd = I;
+def is_zero = I;
+def pred_helper = I;
+def pred = I;
+def ii = I;
+# END_YOUR_CODE
+
+#########
+# TESTS #
+#########
+# NOTE: Expected outputs are given as comments on each line.
+
+section_or; # This symbol will just be printed, so we can keep track of the output.
+(or tt tt) x y;  # x
+(or tt ff) x y;  # x
+(or ff tt) x y;  # x
+(or ff ff) x y;  # y
+
+section_and;
+(and tt tt) x y;  # x
+(and tt ff) x y;  # y
+(and ff tt) x y;  # y
+(and ff ff) x y;  # y
+
+section_not;
+(not tt) x y;  # y
+(not ff) x y;  # x
+
+section_is_odd;
+(is_odd _0) x y;  # y
+(is_odd _1) x y;  # x
+(is_odd _2) x y;  # y
+(is_odd _3) x y;  # x
+
+section_is_zero;
+(is_zero _0) x y;  # x
+(is_zero _1) x y;  # y
+(is_zero _2) x y;  # y
+(is_zero _3) x y;  # y
+
+section_pred_helper;
+(pred_helper (pair _0 _0)) first f x;  # x
+(pred_helper (pair _0 _0)) second f x;  # (f x)
+(pred_helper (pair _0 _1)) first f x;  # (f x)
+(pred_helper (pair _0 _1)) second f x;  # (f (f x))
+
+section_pred;
+(pred _0) f x;  # x
+(pred _1) f x;  # x
+(pred _2) f x;  # (f x)
+(pred _3) f x;  # (f (f x))
+
+section_ii;
+ii x; # x
+ii y; # y
+ii x y; # (x y)
