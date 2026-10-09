@@ -41,7 +41,7 @@ def not    = pair ff tt;
 def is_odd = pair not ff;
 def is_zero = pair (and ff) tt;
 def pred_helper = S (swap (tt pair)) (swap (tt succ));
-def pred = I;
+def pred = S (pair pred_helper (pair _0 _0)) (K K);
 def ii = S K K;
 # END_YOUR_CODE
 
