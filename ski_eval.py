@@ -10,6 +10,10 @@ MIN_LINEAGE_LENGTH = {"S": 4, "K": 3, "I":2, }
 def eval(e: ski.Expr) -> ski.Expr:
     return reduce(e, [])
 
+"""
+reduce:
+Iterates down the left spine of the expression tree until it reaches the leaf node, performing head reduction.
+"""
 def reduce(e, lineage):
     lineage.append(e)
     if isinstance(e, ski.Var):
@@ -19,7 +23,11 @@ def reduce(e, lineage):
         return handle_SKI_leaf(lineage, type)
     return reduce(e.e1, lineage)
 
-
+"""
+handle_SKI_leaf:
+Only called assuming the leaf node (lienage[-1]) is an SKI leaf node. Here we perform the SKI
+rewrite if there are enough arguments, update the tree, and continue to reduce.
+"""
 def handle_SKI_leaf(lineage, type):
     if len(lineage) < MIN_LINEAGE_LENGTH[type]:
         return lineage[0]

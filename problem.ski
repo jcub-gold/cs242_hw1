@@ -32,14 +32,17 @@ def _3  = succ _2;
 # TASK: Implement the following functions.
 
 # BEGIN_YOUR_CODE
-def or     = I;
-def and    = I;
-def not    = I;
-def is_odd = I;
-def is_zero = I;
-def pred_helper = I;
+# HELPERS
+def swap = S (K (S I)) (S (K K) I);
+
+def or     = pair tt;
+def and    = pair I (tt ff);
+def not    = pair ff tt;
+def is_odd = pair not ff;
+def is_zero = pair (and ff) tt;
+def pred_helper = S (swap (tt pair)) (swap (tt succ));
 def pred = I;
-def ii = I;
+def ii = S K K;
 # END_YOUR_CODE
 
 #########
@@ -91,3 +94,6 @@ section_ii;
 ii x; # x
 ii y; # y
 ii x y; # (x y)
+
+section_swap;
+swap x y; # y x
